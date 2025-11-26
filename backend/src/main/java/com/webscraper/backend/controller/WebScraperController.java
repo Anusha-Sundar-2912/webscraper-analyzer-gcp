@@ -24,9 +24,9 @@ public class WebScraperController {
 
     private final WebScraperService scraperService;
 
-    // ===========================
+    
     // SINGLE URL
-    // ===========================
+
     @PostMapping("/analyze")
     public ResponseEntity<AnalysisResponse> analyze(@Valid @RequestBody ScrapeRequest request) {
 
@@ -41,9 +41,9 @@ public class WebScraperController {
         return ResponseEntity.ok(response);
     }
 
-    // ===========================
+    
     // MULTI-URL SCRAPING
-    // ===========================
+    
     @PostMapping("/analyze/multi")
     public ResponseEntity<List<AnalysisResponse>> analyzeMulti(@Valid @RequestBody ScrapeRequest request) {
         List<AnalysisResponse> responses = scraperService.analyzeMulti(request);
