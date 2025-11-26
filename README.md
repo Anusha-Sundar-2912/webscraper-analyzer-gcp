@@ -1,128 +1,145 @@
-🌐 WebScraper Analyzer
+# 🌐 WebScraper Analyzer
 
-A full-stack cloud-deployed smart web-scraping system built with React, Spring Boot, JSoup, Selenium, Docker, and Google Kubernetes Engine (GKE) — capable of scraping static & dynamic websites, analyzing metadata, extracting keywords, and exporting results as PDF, CSV, JSON.
+A full-stack, cloud-deployed smart web-scraping system built with **React**, **Spring Boot**, **JSoup**, **Selenium**, **Docker**, and **Google Kubernetes Engine (GKE)** — capable of scraping static & dynamic websites, extracting metadata, analyzing keywords, crawling nested URLs, taking screenshots (dynamic mode), and exporting results as **PDF**, **CSV**, and **JSON**, all stored securely in **Google Cloud Storage**.
 
-🚀 Live Demo 
-Frontend (Public UI)
+---
 
+## 🚀 Live Deployment
+
+### 🔵 Frontend (Public UI)  
 👉 http://35.200.219.140/
 
-Backend (Public API – GKE LoadBalancer)
+### 🟣 Backend API (GKE LoadBalancer)
 
-Single URL Analysis
-
+**Single URL Analysis**  
 http://34.100.164.25:8080/api/analyze
 
-Multi-URL Analysis
-
+**Multi-URL Analysis**  
 http://34.100.164.25:8080/api/analyze/multi
 
-🏗️ System Architecture
+---
 
-⚡ Features
-🔍 Scraping Modes
+## 🧭 System Architecture  
+![Architecture](./architecture.png)
 
-JSoup (Static Scraping)
+---
 
-Selenium (Dynamic Scraping + screenshots)
+## ✨ Features
 
-Deep Scraping (Nested URLs)
+### 🔍 Scraping Modes
+- **JSoup (Static Scraping)**
+- **Selenium (Dynamic Scraping + Screenshots)**
+- **Deep Scrape (Nested URLs)**
 
-📦 Output Generators
+### 📤 Output Generators
+- PDF Report  
+- CSV Summary  
+- JSON Metadata  
+- Screenshots (Dynamic mode)
 
-PDF Report
+### ☁️ Cloud-Native Pipeline
+- Automatic upload to **Google Cloud Storage**
+- Public download links for reports & screenshots
+- Kubernetes scaling for frontend & backend
 
-CSV Summary
+---
 
-JSON Result
+## 📥 API Usage
 
-Uploaded automatically to Google Cloud Storage
-
-☁️ Cloud Deployment
-
-Dockerized Backend & Frontend
-
-Hosted on Google Kubernetes Engine (GKE)
-
-Google Artifact Registry for images
-
-Cloud Storage for exports
-
-Load Balancer for public access
-
-📥 API Usage (Postman Example)
-🔹 Single URL
-POST http://34.100.164.25:8080/api/analyze
-
-
-Body:
-
+### 🔹 Single URL Request  
+`POST /api/analyze`
+```json
 {
   "url": "https://example.com",
   "keywords": ["example", "domain"],
   "mode": "jsoup",
   "deep": false
 }
+```
 
-🔹 Multi-URL
-POST http://34.100.164.25:8080/api/analyze/multi
-
-
-Body:
-
+### 🔹 Multi-URL Request  
+`POST /api/analyze/multi`
+```json
 {
-  "urls": [
-    "https://example.com",
-    "https://wikipedia.org"
-  ],
+  "urls": ["https://example.com", "https://wikipedia.org"],
   "keywords": ["web", "info"],
   "mode": "selenium",
   "deep": false
 }
+```
 
-🗂️ Technology Stack
-Frontend
+---
 
-React
+## 🛠️ Tech Stack
 
-Tailwind CSS
+### 🎨 Frontend
+- React  
+- Tailwind CSS  
+- Axios  
+- Chart.js  
 
-Axios
+### 🔧 Backend
+- Java 17  
+- Spring Boot  
+- JSoup  
+- Selenium WebDriver  
+- Lombok  
+- PDFBox, OpenCSV  
 
-Chart.js
+### ☁️ Cloud & DevOps
+- Google Kubernetes Engine (GKE)  
+- Google Artifact Registry  
+- Google Cloud Storage  
+- Docker  
+- Kubernetes Deployments & LoadBalancers  
 
-Backend
+---
 
-Java + Spring Boot
+## 📦 Deployment Workflow
+1. Build frontend & backend Docker images  
+2. Push images to **Google Artifact Registry**  
+3. Deploy to **Google Kubernetes Engine** using YAML manifests  
+4. GKE assigns external IPs via **LoadBalancer**  
+5. Backend processes requests and stores outputs in **GCS**  
+6. Frontend consumes API + displays results with charts & links  
 
-JSoup (Static Scraping)
+---
 
-Selenium (Dynamic Scraping)
+## 📂 Folder Structure  
+```
+webscraper-analyzer/
+│
+├── backend/
+│   ├── src/main/java/com/webscraper/backend/
+│   │   ├── controller/
+│   │   ├── model/
+│   │   ├── service/
+│   │   └── util/
+│   ├── Dockerfile
+│   └── pom.xml
+│
+├── frontend/
+│   ├── src/
+│   ├── public/
+│   ├── Dockerfile
+│   └── package.json
+│
+└── manifests/
+    ├── backend-deployment.yaml
+    ├── frontend-deployment.yaml
+    ├── service-backend.yaml
+    ├── service-frontend.yaml
+```
 
-Lombok
+---
 
-PDFBox
+## ✔️ Highlights
+- Cloud-native & production ready  
+- Handles dynamic JS-heavy sites  
+- Beautiful UI with dark/light mode  
+- Deep crawling + keyword analysis  
+- Fully automated export pipeline  
+- Public API + Public frontend  
 
-OpenCSV
+---
 
-Cloud
-
-Google Cloud Platform (GCP)
-
-Google Kubernetes Engine (GKE)
-
-Google Artifact Registry
-
-Google Cloud Storage
-
-🐳 Deployment Overview
-
-Build Docker images for frontend & backend
-
-Push images to Artifact Registry
-
-Deploy using Kubernetes manifests
-
-Expose frontend + backend via LoadBalancer Services
-
-Access the app publicly using the EXTERNAL-IP from GKE
