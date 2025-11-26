@@ -16,9 +16,6 @@ import com.webscraper.backend.model.NestedUrlResult;
 
 public class JsoupScraper {
 
-    // ======================================================
-    // IGNORE ALL SSL CERTIFICATES (Fix Amazon / CME / Flipkart)
-    // ======================================================
     private static SSLContext createIgnoreSSL() {
         try {
             TrustManager[] trustAllCerts = new TrustManager[]{
@@ -40,9 +37,6 @@ public class JsoupScraper {
 
     private static final SSLContext sslContext = createIgnoreSSL();
 
-    // ======================================================
-    // FETCH PAGE — SUPER BOOSTED (WORKS FOR ALL WEBSITES)
-    // ======================================================
     public static Document fetch(String url) throws IOException {
 
         return Jsoup
@@ -132,7 +126,6 @@ public class JsoupScraper {
     }
 
 
-    // ========== NESTED LINKS ==========
     public static List<String> extractNestedUrls(Document doc, String base) {
         List<String> list = new ArrayList<>();
         for (Element a : doc.select("a[href]")) {
@@ -145,7 +138,6 @@ public class JsoupScraper {
     }
 
 
-    // ========== SCRAPE NESTED ==========
     public static NestedUrlResult scrapeNested(String url, List<String> keywords) throws Exception {
 
         Document doc = fetch(url);
