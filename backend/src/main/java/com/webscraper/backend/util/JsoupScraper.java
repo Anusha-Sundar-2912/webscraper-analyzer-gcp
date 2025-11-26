@@ -52,13 +52,9 @@ public class JsoupScraper {
                 .get();
     }
 
-
-    // ========== TITLE ==========
     public static String extractTitle(Document doc) {
         return doc.title() != null ? doc.title() : "N/A";
     }
-
-    // ========== DESCRIPTION ==========
     public static String extractDescription(Document doc) {
 
         Element m1 = doc.selectFirst("meta[name=description]");
@@ -69,15 +65,12 @@ public class JsoupScraper {
         if (m2 != null && !m2.attr("content").isBlank()) return m2.attr("content");
         if (m3 != null && !m3.attr("content").isBlank()) return m3.attr("content");
 
-        // ⭐ Fallback: use first paragraph text
         Element p = doc.selectFirst("p");
         if (p != null) return p.text();
 
         return "N/A";
     }
 
-
-    // ========== KEYWORD COUNT ==========
     public static Map<String, Integer> countKeywords(String html, List<String> keywords) {
 
         Map<String, Integer> map = new HashMap<>();
@@ -105,8 +98,6 @@ public class JsoupScraper {
         return map;
     }
 
-
-    // ========== DATE FINDER ==========
     public static List<String> findDates(String html) {
 
         List<String> out = new ArrayList<>();
