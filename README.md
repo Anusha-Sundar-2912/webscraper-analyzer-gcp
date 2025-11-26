@@ -138,7 +138,6 @@ webscraper-analyzer/
 - Handles dynamic JS-heavy sites  
 - Beautiful UI with dark/light mode  
 - Deep crawling + keyword analysis  
-- Fully automated export pipeline  
 - Public API + Public frontend  
 
 ---
