@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global Reset */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* DARK MODE ROOT */
+html.dark {
+  color-scheme: dark;
+}
+
+/* Smooth theme transition */
+* {
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* CARDS (Glassmorphism) */
+.card {
+  @apply bg-white/70 dark:bg-black/30 backdrop-blur-xl
+         border border-black/10 dark:border-white/10
+         shadow-xl rounded-2xl p-6;
+}
+
+/* PARTICLES (Correct z-index) */
+#galaxy-starfield {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: -40 !important;
+  pointer-events: none !important;
+}
+
+/* AURORA LAYER */
+.aurora-layer {
+  position: absolute;
+  inset: 0;
+  z-index: -30;
+  pointer-events: none;
+}
+
+/* ============================================================
+   ⭐ REALISTIC DARK MODE TWINKLING STARS
+   (Light mode: hidden — Dark mode: glow + scale + flicker)
+   ============================================================ */
+
+/* Twinkle animation */
+@keyframes twinkle-dark {
+  0%, 100% {
+    opacity: var(--initialOpacity);
+    transform: scale(1);
+  }
+  50% {
+    opacity: calc(var(--initialOpacity) + 0.4);
+    transform: scale(1.25);
+  }
+}
+
+/* Apply to stars in dark mode ONLY */
+.dark .star {
+  animation: twinkle-dark var(--speed) infinite ease-in-out;
+  will-change: opacity, transform;
+}
+
+.dark .star-back {
+  animation: twinkle-dark var(--speed) infinite ease-in-out;
+  will-change: opacity, transform;
+}
+
+/* ============================================================
+   ⭐ REMOVED SHOOTING STARS (as requested)
+   (No leftover animation classes)
+   ============================================================ */
+
+
+/* ============================================================
+   Floating Aurora Blobs
+   ============================================================ */
+@keyframes blob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(20px, -30px) scale(1.1); }
+}
+
+.animate-blob1 { animation: blob 12s infinite ease-in-out; }
+.animate-blob2 { animation: blob 14s infinite ease-in-out 2s; }
+.animate-blob3 { animation: blob 16s infinite ease-in-out 1s; }
+
+/* ============================================================
+   Aurora Sweeping Motion
+   ============================================================ */
+@keyframes auroraMove {
+  0%   { transform: translate(-10%, -10%) rotate(0deg); }
+  50%  { transform: translate(10%, 10%) rotate(20deg); }
+  100% { transform: translate(-10%, -10%) rotate(0deg); }
+}
+
+.animate-aurora1 { animation: auroraMove 25s infinite ease-in-out; }
+.animate-aurora2 { animation: auroraMove 30s infinite ease-in-out 5s; }
+.animate-aurora3 { animation: auroraMove 22s infinite ease-in-out 3s; }
+.animate-aurora4 { animation: auroraMove 28s infinite ease-in-out 1s; }

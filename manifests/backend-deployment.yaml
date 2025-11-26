@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+
+  selector:
+    matchLabels:
+      app: backend
+
+  template:
+    metadata:
+      labels:
+        app: backend
+
+    spec:
+      # ====================================================
+      # RUN BACKEND ONLY ON UBUNTU NODEPOOL
+      # ====================================================
+      nodeSelector:
+        cloud.google.com/gke-nodepool: ubuntu-pool
+
+      containers:
+        - name: backend
+          image: asia-south1-docker.pkg.dev/webscraper-analyzer-project/scraper-backend/backend:v12
+          ports:
+            - containerPort: 8080
+
+          # ===========================
+          # SELENIUM + CHROME RESOURCES
+          # ===========================
+          resources:
+            requests:
+              cpu: "700m"
+              memory: "1Gi"
+            limits:
+              cpu: "1"
+              memory: "2Gi"
+
+          # ===========================
+          # CHROME NO-SANDBOX FIX
+          # ===========================
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsUser: 1000
+            runAsNonRoot: true
+
+          env:
+            - name: GCS_BUCKET
+              value: "webscraper-analysis-bucket"
+
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: "/var/secrets/google/key.json"
+
+            - name: CHROME_BIN
+              value: "/usr/bin/google-chrome"
+
+            - name: CHROMEDRIVER
+              value: "/usr/bin/chromedriver"
+
+            - name: CHROME_FLAGS
+              value: "--no-sandbox --disable-dev-shm-usage --disable-gpu"
+
+          volumeMounts:
+            - name: gcp-key
+              mountPath: "/var/secrets/google"
+              readOnly: true
+
+      volumes:
+        - name: gcp-key
+          secret:
+            secretName: gcp-key
