@@ -18,6 +18,10 @@ http://34.100.164.25:8080/api/analyze
 http://34.100.164.25:8080/api/analyze/multi
 
 ---
+## 🎥 Demo Video (MP4)
+
+https://github.com/Anusha-Sundar-2912/webscraper-analyzer-gcp/raw/main/demo.mp4
+---
 
 ## 🧭 System Architecture  
 ![Architecture](./architecture.png)
