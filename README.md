@@ -23,7 +23,7 @@ https://github.com/user-attachments/assets/116cc46c-b6cc-487f-a77e-9da6c9ddac6f
 
 ## 🧭 System Architecture  
 
-<img width="1024" height="1024" alt="webscraperanlyzer" src="https://github.com/user-attachments/assets/4fdaa6ca-03d4-414d-9610-55989bc2df18" />
+<img width="700" height="700" alt="webscraperanlyzer" src="https://github.com/user-attachments/assets/4fdaa6ca-03d4-414d-9610-55989bc2df18" />
 
 ## ✨ Features
 
