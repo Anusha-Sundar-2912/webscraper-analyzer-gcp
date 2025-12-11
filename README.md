@@ -19,6 +19,12 @@ http://34.100.164.25:8080/api/analyze/multi
 
 ## 🎬 Demo Video (MP4)
 
+<video src="https://raw.githubusercontent.com/Anusha-Sundar-2912/webscraper-analyzer-gcp/main/assets/demo.mp4" controls width="100%"></video>
+
+If the video does not load, click the link below:
+
+🔗 https://raw.githubusercontent.com/Anusha-Sundar-2912/webscraper-analyzer-gcp/main/assets/demo.mp4
+
 
 ## 🧭 System Architecture  
 ![Architecture](./architecture.png)
